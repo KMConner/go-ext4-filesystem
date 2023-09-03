@@ -105,7 +105,7 @@ func (ext4 *FileSystem) readDirEntry(name string) ([]fs.DirEntry, error) {
 	}
 
 	var currentIno int64
-	dirs := strings.Split(strings.Trim(filepath.Clean(name), "/"), "/")
+	dirs := strings.Split(strings.Trim(filepath.ToSlash(filepath.Clean(name)), "/"), "/")
 	if len(dirs) == 1 && dirs[0] == "." || dirs[0] == "" {
 		var dirEntries []fs.DirEntry
 		for _, fileInfo := range fileInfos {
